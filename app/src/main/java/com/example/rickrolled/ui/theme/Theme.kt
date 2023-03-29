@@ -6,25 +6,31 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
+/* Other default colors to override
+onPrimary = Color.White,
+onSecondary = Color.Black,
+*/
+
 private val DarkColorPalette = darkColors(
-        primary = Purple200,
-        primaryVariant = Purple700,
-        secondary = Teal200
+    primary = Green,
+    primaryVariant = Green,
+    secondary = Yellow,
+    background = Whitish,
+    onBackground = Black,
+    surface = White200,
+    onSurface = Black,
+    onError = Red300
 )
 
 private val LightColorPalette = lightColors(
-        primary = Purple500,
-        primaryVariant = Purple700,
-        secondary = Teal200
-
-        /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
+    primary = Green,
+    primaryVariant = Green,
+    secondary = Yellow,
+    background = Whitish,
+    onBackground = Black,
+    surface = White200,
+    onSurface = Black,
+    onError = Red300
 )
 
 @Composable
@@ -36,9 +42,9 @@ fun RickrolledTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Compos
     }
 
     MaterialTheme(
-            colors = colors,
-            typography = Typography,
-            shapes = Shapes,
-            content = content
+        colors = colors,
+        typography = Typography,
+        shapes = Shapes,
+        content = content
     )
 }
