@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -83,6 +84,15 @@ fun CharacterCard(
                         .padding(horizontal = 10.dp)
                 )
             }
+
+            Text(
+                text = character.id.toString(),
+                modifier = Modifier
+                    .align(Alignment.TopStart)
+                    .padding(10.dp),
+                fontWeight = FontWeight.Medium,
+                fontSize = 20.sp
+            )
 
             IconButton(
                 onClick = {

@@ -10,6 +10,7 @@ import com.example.rickrolled.ui.screen.character_details.CharacterDetailsViewMo
 import com.example.rickrolled.ui.screen.character_list.CharacterListViewModel
 import com.example.rickrolled.ui.screen.favorites.FavoritesViewModel
 import com.example.rickrolled.utils.Constants
+import com.example.rickrolled.utils.NetworkConnectivityObserver
 import com.example.rickrolled.utils.SharedPreferencesExtensions
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -26,7 +27,6 @@ val appModule = module {
         ).build()
     }
 
-    single {
-        SharedPreferencesExtensions(androidContext())
-    }
+    single { SharedPreferencesExtensions(androidContext()) }
+    single { NetworkConnectivityObserver(androidContext()) }
 }

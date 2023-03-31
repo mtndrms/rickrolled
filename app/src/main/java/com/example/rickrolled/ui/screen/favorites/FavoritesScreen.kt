@@ -25,12 +25,8 @@ fun FavoritesScreen(
             items(if (favorites.size % 2 == 0) favorites.size / 2 else (favorites.size / 2) + 1) { index ->
                 ListRow(
                     favorites[index * 2],
-                    if (favorites.size >= index * 2 + 2) {
-                        favorites[(index * 2) + 1]
-                    } else {
-                        null
-                    },
-                    onCardClick = { navController.navigate(CharacterNavDirections.details(favorites[index * 2].id).route) }
+                    if (favorites.size >= index * 2 + 2) favorites[(index * 2) + 1] else null,
+                    navController
                 )
             }
         }
