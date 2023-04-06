@@ -23,24 +23,36 @@ import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.example.rickrolled.data.entity.Character
+import com.example.rickrolled.ui.screen.MainScreenViewModel
 import com.example.rickrolled.ui.screen.favorites.FavoritesViewModel
+import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun CharacterCard(
     character: Character,
     modifier: Modifier = Modifier,
-    viewModel: FavoritesViewModel,
+    viewModel: FavoritesViewModel = getViewModel(),
+    mainScreenViewModel: MainScreenViewModel = getViewModel(),
     onCardClick: () -> Unit = {}
 ) {
     var isFavorite by remember { mutableStateOf(viewModel.isFavorite(character.id)) }
+    val (noNetworkWarningSnackBarState, setNoNetworkWarningSnackBarState) = remember {
+        mutableStateOf(
+            false
+        )
+    }
 
     Card(
         elevation = 5.dp,
         modifier = modifier
             .aspectRatio(1f)
             .clickable {
-                onCardClick()
-                println("id: ${character.id}, next: ${character.nextPage}, prev: ${character.prevPage}")
+                if (mainScreenViewModel.isNetworkAvailable.value) {
+                    onCardClick()
+                    println("id: ${character.id}, next: ${character.nextPage}, prev: ${character.prevPage}")
+                } else {
+                    setNoNetworkWarningSnackBarState(true)
+                }
             }
     ) {
         Box(
@@ -79,6 +91,7 @@ fun CharacterCard(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     textAlign = TextAlign.Center,
+                    color = MaterialTheme.colors.onBackground,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 10.dp)
@@ -87,6 +100,7 @@ fun CharacterCard(
 
             Text(
                 text = character.id.toString(),
+                color = MaterialTheme.colors.onBackground,
                 modifier = Modifier
                     .align(Alignment.TopStart)
                     .padding(10.dp),
@@ -116,6 +130,21 @@ fun CharacterCard(
                         tint = MaterialTheme.colors.primary
                     )
                 }
+            }
+
+            if (noNetworkWarningSnackBarState) {
+                Snackbar(
+                    action = {
+                        Button(onClick = {
+                            setNoNetworkWarningSnackBarState(false)
+                        }) {
+                            Text("MyAction")
+                        }
+                    },
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .align(Alignment.BottomCenter)
+                ) { Text(text = "This is a snackbar!") }
             }
         }
     }

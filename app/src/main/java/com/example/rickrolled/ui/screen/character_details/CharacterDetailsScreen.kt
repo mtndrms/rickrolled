@@ -1,14 +1,20 @@
 package com.example.rickrolled.ui.screen.character_details
 
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.ScrollableState
+import androidx.compose.foundation.gestures.rememberScrollableState
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,6 +35,7 @@ fun CharacterDetailsScreen(
     id: Int?, viewModel: CharacterDetailsViewModel = getViewModel(parameters = { parametersOf(id) })
 ) {
     val character = viewModel.character.value
+    val scrollState = rememberScrollState()
 
     Column(
         modifier = Modifier
@@ -46,7 +53,8 @@ fun CharacterDetailsScreen(
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .aspectRatio(1f)
+                .animateContentSize(animationSpec = tween(300))
+                .height(if (scrollState.value > 0) 0.dp else 500.dp)
         )
 
         Row(
@@ -86,7 +94,45 @@ fun CharacterDetailsScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
+                .verticalScroll(
+                    state = scrollState,
+                )
         ) {
+            Text(text = "Created: ${character?.created?.substring(0, 10)}", fontSize = 18.sp)
+            Text(text = "Episode Count: ${character?.episode?.size}", fontSize = 18.sp)
+            Text(text = "Location: ${character?.location?.name}", fontSize = 18.sp)
+            Text(text = "Status: ${character?.status}", fontSize = 18.sp)
+            Text(text = "Type: ${character?.type}", fontSize = 18.sp)
+            Text(text = "Created: ${character?.created?.substring(0, 10)}", fontSize = 18.sp)
+            Text(text = "Episode Count: ${character?.episode?.size}", fontSize = 18.sp)
+            Text(text = "Location: ${character?.location?.name}", fontSize = 18.sp)
+            Text(text = "Status: ${character?.status}", fontSize = 18.sp)
+            Text(text = "Type: ${character?.type}", fontSize = 18.sp)
+            Text(text = "Created: ${character?.created?.substring(0, 10)}", fontSize = 18.sp)
+            Text(text = "Episode Count: ${character?.episode?.size}", fontSize = 18.sp)
+            Text(text = "Location: ${character?.location?.name}", fontSize = 18.sp)
+            Text(text = "Status: ${character?.status}", fontSize = 18.sp)
+            Text(text = "Type: ${character?.type}", fontSize = 18.sp)
+            Text(text = "Created: ${character?.created?.substring(0, 10)}", fontSize = 18.sp)
+            Text(text = "Episode Count: ${character?.episode?.size}", fontSize = 18.sp)
+            Text(text = "Location: ${character?.location?.name}", fontSize = 18.sp)
+            Text(text = "Status: ${character?.status}", fontSize = 18.sp)
+            Text(text = "Type: ${character?.type}", fontSize = 18.sp)
+            Text(text = "Created: ${character?.created?.substring(0, 10)}", fontSize = 18.sp)
+            Text(text = "Episode Count: ${character?.episode?.size}", fontSize = 18.sp)
+            Text(text = "Location: ${character?.location?.name}", fontSize = 18.sp)
+            Text(text = "Status: ${character?.status}", fontSize = 18.sp)
+            Text(text = "Type: ${character?.type}", fontSize = 18.sp)
+            Text(text = "Created: ${character?.created?.substring(0, 10)}", fontSize = 18.sp)
+            Text(text = "Episode Count: ${character?.episode?.size}", fontSize = 18.sp)
+            Text(text = "Location: ${character?.location?.name}", fontSize = 18.sp)
+            Text(text = "Status: ${character?.status}", fontSize = 18.sp)
+            Text(text = "Type: ${character?.type}", fontSize = 18.sp)
+            Text(text = "Created: ${character?.created?.substring(0, 10)}", fontSize = 18.sp)
+            Text(text = "Episode Count: ${character?.episode?.size}", fontSize = 18.sp)
+            Text(text = "Location: ${character?.location?.name}", fontSize = 18.sp)
+            Text(text = "Status: ${character?.status}", fontSize = 18.sp)
+            Text(text = "Type: ${character?.type}", fontSize = 18.sp)
             Text(text = "Created: ${character?.created?.substring(0, 10)}", fontSize = 18.sp)
             Text(text = "Episode Count: ${character?.episode?.size}", fontSize = 18.sp)
             Text(text = "Location: ${character?.location?.name}", fontSize = 18.sp)

@@ -3,12 +3,10 @@ package com.example.rickrolled.ui.screen.episode_list.components
 import android.annotation.SuppressLint
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.runtime.*
@@ -28,6 +26,7 @@ fun EpisodeCard(episode: Episode, expand: () -> Unit = {}) {
     Card(
         elevation = 5.dp,
         border = BorderStroke(1.dp, Color.LightGray),
+        backgroundColor = MaterialTheme.colors.surface,
         modifier = Modifier
             .fillMaxWidth()
             .clickable { isExpanded = isExpanded.not() }
@@ -41,14 +40,19 @@ fun EpisodeCard(episode: Episode, expand: () -> Unit = {}) {
                 modifier = Modifier.fillMaxHeight(),
                 verticalArrangement = Arrangement.Center
             ) {
-                Text(text = episode.name, fontSize = 20.sp)
-                Text(text = episode.episode)
+                Text(
+                    text = episode.name,
+                    fontSize = 20.sp,
+                    color = MaterialTheme.colors.onBackground
+                )
+                Text(text = episode.episode, color = MaterialTheme.colors.onBackground)
             }
 
             IconButton(onClick = expand, modifier = Modifier.align(Alignment.CenterEnd)) {
                 Icon(
                     imageVector = Icons.Filled.KeyboardArrowDown,
-                    contentDescription = "more"
+                    contentDescription = "expand card",
+                    tint = MaterialTheme.colors.onBackground
                 )
             }
         }

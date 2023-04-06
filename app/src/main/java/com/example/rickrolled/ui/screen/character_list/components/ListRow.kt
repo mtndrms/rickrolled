@@ -15,7 +15,6 @@ fun ListRow(left: Character, right: Character?, navController: NavHostController
         CharacterCard(
             character = left, modifier = Modifier
                 .weight(1f),
-            get(),
             onCardClick = { navController.navigate(CharacterNavDirections.details(left.id).route) }
         )
         if (right != null) {
@@ -23,7 +22,6 @@ fun ListRow(left: Character, right: Character?, navController: NavHostController
             CharacterCard(
                 character = right, modifier = Modifier
                     .weight(1f),
-                get(),
                 onCardClick = { navController.navigate(CharacterNavDirections.details(right.id).route) }
             )
         } else {

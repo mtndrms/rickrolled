@@ -2,6 +2,8 @@ package com.example.rickrolled.ui.screen.character_list
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -20,18 +22,23 @@ fun CharacterListScreen(navController: NavHostController, viewModel: CharacterLi
     val characters: LazyPagingItems<Character> = viewModel.data.collectAsLazyPagingItems()
     val isSearching by remember { viewModel.isSearching }
     val filteredList by remember { viewModel.filteredList }
+    val lazyListState = rememberLazyListState()
 
     Column {
-        SearchBar(modifier = Modifier.background(MaterialTheme.colors.primary)) {
-            viewModel.search(
-                it
-            )
+        SearchBar(
+            modifier = Modifier.background(MaterialTheme.colors.primary),
+            lazyListState
+        ) { query ->
+            viewModel.search(query)
         }
 
         if (isSearching) {
-            SearchContent(filteredList, navController)
+            SearchContent(filteredList, navController, lazyListState)
         } else {
-            CharactersContent(characters, navController)
+            CharactersContent(characters, navController, lazyListState)
         }
     }
 }
+
+val LazyListState.isScrolled: Boolean
+    get() = firstVisibleItemIndex > 0 || firstVisibleItemScrollOffset > 0

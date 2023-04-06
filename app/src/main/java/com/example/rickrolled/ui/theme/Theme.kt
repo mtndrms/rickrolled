@@ -12,12 +12,15 @@ onSecondary = Color.Black,
 */
 
 private val DarkColorPalette = darkColors(
-    primary = Green,
-    primaryVariant = Green,
-    secondary = Yellow,
-    background = Whitish,
-    onBackground = Black,
-    surface = White200,
+    primary = DarkGreen,
+    primaryVariant = DarkGreen,
+    onPrimary = White200,
+    secondary = DarkYellow,
+    secondaryVariant = DarkYellow,
+    onSecondary = White200,
+    background = DarkGray,
+    onBackground = Whitish,
+    surface = LighterGray,
     onSurface = Black,
     onError = Red300
 )
@@ -25,7 +28,10 @@ private val DarkColorPalette = darkColors(
 private val LightColorPalette = lightColors(
     primary = Green,
     primaryVariant = Green,
+    onPrimary = White200,
     secondary = Yellow,
+    secondaryVariant = Yellow,
+    onSecondary = White200,
     background = Whitish,
     onBackground = Black,
     surface = White200,
