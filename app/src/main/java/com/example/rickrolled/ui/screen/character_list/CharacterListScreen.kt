@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.example.rickrolled.data.entity.Character
+import com.core.network.entity.Character
 import com.example.rickrolled.ui.components.SearchBar
 import com.example.rickrolled.ui.screen.character_list.components.CharactersContent
 import com.example.rickrolled.ui.screen.character_list.components.SearchContent

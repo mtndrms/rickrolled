@@ -3,8 +3,8 @@ package com.example.rickrolled.ui.screen.character_details
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickrolled.data.remote.repository.CharacterRepository
-import com.example.rickrolled.data.remote.response.character.Character
+import com.core.network.remote.response.character.Character
+import com.core.network.repository.CharacterRepository
 import kotlinx.coroutines.launch
 
 class CharacterDetailsViewModel(
@@ -19,7 +19,9 @@ class CharacterDetailsViewModel(
 
     private fun fetchCharacterData(id: Int?) {
         viewModelScope.launch {
-            character.value = id?.let { repository.getCharacter(it) }
+            character.value = id?.let {
+                repository.getCharacter(it)
+            }
         }
     }
 }

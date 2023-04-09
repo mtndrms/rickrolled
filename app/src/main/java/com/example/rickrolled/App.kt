@@ -1,8 +1,8 @@
 package com.example.rickrolled
 
 import android.app.Application
+import com.core.network.di.networkModule
 import com.example.rickrolled.di.appModule
-import com.example.rickrolled.di.networkModule
 import com.example.rickrolled.di.repositoryModule
 import com.example.rickrolled.di.viewModelModule
 import org.koin.android.ext.koin.androidContext

@@ -48,6 +48,8 @@ android {
 }
 
 dependencies {
+    implementation project(path: ":core:network")
+
     implementation libs.androidx.compose.ui
     debugImplementation libs.androidx.compose.uiTooling
     debugImplementation libs.androidx.compose.uiTestManifest

@@ -1,27 +1,17 @@
 package com.example.rickrolled.ui.screen.character_list
 
-import android.content.Context
-import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.example.rickrolled.data.local.AppDatabase
-import com.example.rickrolled.data.local.remote_mediator.CharacterRemoteMediator
-import com.example.rickrolled.data.remote.repository.CharacterRepository
-import com.example.rickrolled.utils.Constants.PAGE_SIZE
-import com.example.rickrolled.data.entity.Character
-import com.example.rickrolled.utils.ConnectivityObserver
-import com.example.rickrolled.utils.NetworkConnectivityObserver
+import com.core.network.entity.Character
+import com.core.network.local.AppDatabase
+import com.core.network.local.remote_mediator.CharacterRemoteMediator
+import com.core.network.repository.CharacterRepository
+import com.core.network.utils.Constants.PAGE_SIZE
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagingApi::class)

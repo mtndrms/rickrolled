@@ -21,10 +21,7 @@ import com.example.rickrolled.ui.screen.settings.SettingsScreenViewModel
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun FavoritesScreen(
-    navController: NavHostController,
-    viewModel: FavoritesViewModel
-) {
+fun FavoritesScreen(navController: NavHostController, viewModel: FavoritesViewModel) {
     val favorites by remember { viewModel.favorites }
 
     Column(

@@ -5,9 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.rickrolled.data.entity.Character
+import com.core.network.entity.Character
 import com.example.rickrolled.navigation.character.CharacterNavDirections
-import org.koin.androidx.compose.get
 
 @Composable
 fun ListRow(left: Character, right: Character?, navController: NavHostController) {

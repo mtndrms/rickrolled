@@ -17,7 +17,7 @@ import com.example.rickrolled.ui.components.BottomBar
 import com.example.rickrolled.ui.components.NetworkConnectionBox
 import com.example.rickrolled.ui.components.TopBar
 import com.example.rickrolled.ui.screen.favorites.FavoritesViewModel
-import com.example.rickrolled.utils.showBars
+import com.example.rickrolled.utils.ShowBars
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import org.koin.androidx.compose.getViewModel
@@ -38,7 +38,7 @@ fun MainScreen(
         setNavigationBarColor(MaterialTheme.colors.primary, darkIcons = false)
     }
 
-    showBars(flag = true)
+    ShowBars(flag = true)
 
     when (backStackEntry?.destination?.route) {
         "detail/{id}" -> {

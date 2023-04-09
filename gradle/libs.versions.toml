@@ -1,8 +1,12 @@
 [versions]
+androidGradlePlugin = "7.4.2"
+kotlinVersion = "1.8.10"
+
 # Androidx
 androidx-core = "1.9.0"
 androidx-compose = "1.4.0"
 androidx-activity = "1.7.0"
+androidx-appcompat = "1.6.1"
 androidx-lifecycle = "2.6.1"
 androidx-room = "2.5.1"
 androidx-paging = "3.1.1"
@@ -27,11 +31,15 @@ retrofit = "2.9.0"
 # Coil
 coil = "2.3.0"
 
+# Material
+android-material = "1.8.0"
+
 # Test
 junit = "4.13.2"
 
 [libraries]
 ### Start of Androidx libraries
+androidx-appcompat = {module = "androidx.appcompat:appcompat", version.ref = "androidx.appcompat"}
 ## Paging
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "androidx-paging" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "androidx-paging-compose" }
@@ -84,8 +92,16 @@ converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 
+# Material
+android-material = { module = "com.google.android.material:material", version.ref = "android-material" }
+
 # Test
 androidx-test-ext-junit = { module = "androidx.test.ext:junit", version = "1.1.5" }
 androidx-compose-ui-test-junit = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidx-compose" }
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-espresso" }
 junit = { module = "junit:junit", version.ref = "junit" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+jetbrains-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }

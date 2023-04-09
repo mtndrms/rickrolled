@@ -3,7 +3,6 @@ package com.example.rickrolled.ui.screen.episode_list.components
 import android.annotation.SuppressLint
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -13,10 +12,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.booleanResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.rickrolled.data.entity.Episode
+import com.core.network.entity.Episode
 
 @SuppressLint("UnusedTransitionTargetStateParameter")
 @Composable

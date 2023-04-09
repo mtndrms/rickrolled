@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
-import com.example.rickrolled.data.entity.Character
+import com.core.network.entity.Character
 import com.example.rickrolled.ui.screen.MainScreenViewModel
 import com.example.rickrolled.ui.screen.favorites.FavoritesViewModel
 import org.koin.androidx.compose.getViewModel

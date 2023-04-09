@@ -3,8 +3,8 @@ package com.example.rickrolled.ui.screen.favorites
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.rickrolled.data.entity.Character
-import com.example.rickrolled.data.local.AppDatabase
+import com.core.network.local.AppDatabase
+import com.core.network.entity.Character
 import com.example.rickrolled.utils.SharedPreferencesExtensions
 import kotlinx.coroutines.launch
 

@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.rickrolled.data.entity.Character
+import com.core.network.entity.Character
 
 @Composable
 fun SearchContent(filteredList: List<Character>, navController: NavHostController, lazyListState: LazyListState) {
