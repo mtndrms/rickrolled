@@ -10,23 +10,28 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.rickrolled.navigation.character.CharacterNavDirections
-import com.example.rickrolled.navigation.main.MainNavDirections
-import com.example.rickrolled.navigation.main.MainNavGraph
-import com.example.rickrolled.ui.components.BottomBar
-import com.example.rickrolled.ui.components.NetworkConnectionBox
-import com.example.rickrolled.ui.components.TopBar
-import com.example.rickrolled.ui.screen.favorites.FavoritesViewModel
+import androidx.navigation.navOptions
+import com.core.designsystem.component.BottomBar
+import com.core.designsystem.component.TopBar
+import com.example.rickrolled.navigation.NavigationHost
 import com.example.rickrolled.utils.ShowBars
+import com.feature.character_list.CharacterListScreen
+import com.feature.character_list.navigation.navigateToCharacterList
+import com.feature.episode.navigation.navigateToEpisodeList
+import com.feature.favorites.FavoritesViewModel
+import com.feature.favorites.navigation.navigateToFavoritesScreen
+import com.feature.location_list.navigation.navigateToLocationList
+import com.feature.settings.navigation.navigateToSettingsScreen
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import org.koin.androidx.compose.getViewModel
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @OptIn(ExperimentalAnimationApi::class)
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MainScreen(
     favoritesViewModel: FavoritesViewModel = getViewModel(),
+    mainScreenViewModel: MainScreenViewModel = getViewModel(),
     navController: NavHostController = rememberAnimatedNavController()
 ) {
     val backStackEntry by navController.currentBackStackEntryAsState()
@@ -41,6 +46,10 @@ fun MainScreen(
     ShowBars(flag = true)
 
     when (backStackEntry?.destination?.route) {
+        "splash" -> {
+            bottomBarState.value = false
+            topBarState.value = false
+        }
         "detail/{id}" -> {
             bottomBarState.value = false
             topBarState.value = true
@@ -63,27 +72,24 @@ fun MainScreen(
         topBar = {
             TopBar(modifier = Modifier.background(MaterialTheme.colors.primary),
                 topBarState = topBarState,
-                navController = navController,
                 canNavigateBack = navController.previousBackStackEntry != null,
                 currentScreen = backStackEntry?.destination?.route ?: "Home",
-                toFavoriteListScreen = { navController.navigate(CharacterNavDirections.favorites.route) },
-                toSettingsScreen = { navController.navigate(MainNavDirections.Settings.route) },
+                navigateUp = { navController.navigateUp() },
+                toFavoriteListScreen = { navController.navigateToFavoritesScreen() },
+                toSettingsScreen = { navController.navigateToSettingsScreen() },
                 clearAllFavorites = { favoritesViewModel.clearFavorites() })
         },
         bottomBar = {
             BottomBar(modifier = Modifier.background(MaterialTheme.colors.primary),
                 bottomBarState = bottomBarState,
                 toCharactersScreen = {
-                    navController.popBackStack()
-                    navController.navigate(MainNavDirections.Characters.route)
+                    navController.navigateToCharacterList()
                 },
                 toEpisodesScreen = {
-                    navController.popBackStack()
-                    navController.navigate(MainNavDirections.Episodes.route)
+                    navController.navigateToEpisodeList()
                 },
                 toLocationsScreen = {
-                    navController.popBackStack()
-                    navController.navigate(MainNavDirections.Locations.route)
+                    navController.navigateToLocationList()
                 }
             )
         },
@@ -94,22 +100,8 @@ fun MainScreen(
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            NetworkConnectionBox()
-            MainNavGraph(navController = navController)
+            //NetworkConnectionBox(isNetworkAvailable = mainScreenViewModel.isNetworkAvailable.value)
+            NavigationHost(navController = navController)
         }
     }
 }
-
-//Column(
-//modifier = Modifier.fillMaxSize(),
-//verticalArrangement = Arrangement.Center,
-//horizontalAlignment = Alignment.CenterHorizontally
-//) {
-//    CircularProgressIndicator()
-//    Text(
-//        text = "Try connecting a network",
-//        fontSize = 18.sp,
-//        color = Color.Gray,
-//        modifier = Modifier.padding(top = 16.dp)
-//    )
-//}

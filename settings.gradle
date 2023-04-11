@@ -15,3 +15,11 @@ dependencyResolutionManagement {
 rootProject.name = "Rickrolled"
 include ':app'
 include ':core:network'
+include ':feature:episode_list'
+include ':core:designsystem'
+include ':feature:location_list'
+include ':feature:settings'
+include ':core:common'
+include ':feature:favorites'
+include ':feature:character_list'
+include ':feature:character_details'

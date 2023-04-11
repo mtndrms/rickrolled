@@ -49,6 +49,14 @@ android {
 
 dependencies {
     implementation project(path: ":core:network")
+    implementation project(path: ":core:designsystem")
+    implementation project(path: ":core:common")
+    implementation project(path: ":feature:character_list")
+    implementation project(path: ":feature:character_details")
+    implementation project(path: ":feature:episode_list")
+    implementation project(path: ":feature:location_list")
+    implementation project(path: ":feature:settings")
+    implementation project(path: ":feature:favorites")
 
     implementation libs.androidx.compose.ui
     debugImplementation libs.androidx.compose.uiTooling

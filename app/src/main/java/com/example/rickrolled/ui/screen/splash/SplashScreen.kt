@@ -26,14 +26,10 @@ import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
 import com.example.rickrolled.R
-import com.example.rickrolled.ui.screen.MainScreenViewModel
 import kotlinx.coroutines.delay
-import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun SplashScreen(
-    navController: NavHostController
-) {
+fun SplashScreen(navController: NavHostController) {
     val colorTextStart = MaterialTheme.colors.primary
     val colorTextEnd = MaterialTheme.colors.secondary
     val textColor = remember { Animatable(colorTextStart) }
@@ -42,7 +38,7 @@ fun SplashScreen(
         textColor.animateTo(Color.White, tween(1000))
         delay(1000)
         navController.popBackStack()
-        navController.navigate("main")
+        navController.navigate("character_list")
     }
 
     Column(
@@ -62,7 +58,7 @@ fun SplashScreen(
 }
 
 @Composable
-fun GifImage(modifier: Modifier = Modifier) {
+fun GifImage() {
     val context = LocalContext.current
     val imageLoader = ImageLoader.Builder(context).components {
         if (SDK_INT >= 28) {
