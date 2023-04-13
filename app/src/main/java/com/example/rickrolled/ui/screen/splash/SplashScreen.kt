@@ -7,10 +7,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
+import androidx.compose.material.Text
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -26,14 +24,11 @@ import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
 import coil.size.Size
 import com.example.rickrolled.R
-import com.example.rickrolled.ui.screen.MainScreenViewModel
+import com.feature.character_list.navigation.navigateToCharacterListScreen
 import kotlinx.coroutines.delay
-import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun SplashScreen(
-    navController: NavHostController
-) {
+fun SplashScreen(navController: NavHostController) {
     val colorTextStart = MaterialTheme.colors.primary
     val colorTextEnd = MaterialTheme.colors.secondary
     val textColor = remember { Animatable(colorTextStart) }
@@ -42,7 +37,7 @@ fun SplashScreen(
         textColor.animateTo(Color.White, tween(1000))
         delay(1000)
         navController.popBackStack()
-        navController.navigate("main")
+        navController.navigateToCharacterListScreen()
     }
 
     Column(
@@ -62,7 +57,7 @@ fun SplashScreen(
 }
 
 @Composable
-fun GifImage(modifier: Modifier = Modifier) {
+fun GifImage() {
     val context = LocalContext.current
     val imageLoader = ImageLoader.Builder(context).components {
         if (SDK_INT >= 28) {
