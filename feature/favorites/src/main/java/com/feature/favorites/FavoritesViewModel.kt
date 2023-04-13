@@ -3,13 +3,13 @@ package com.feature.favorites
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.core.common.SharedPreferencesExtensions
+import com.core.common.FavoritesSharedPreferences
 import com.core.network.local.AppDatabase
 import com.core.network.entity.Character
 import kotlinx.coroutines.launch
 
 class FavoritesViewModel(
-    private val preferences: SharedPreferencesExtensions,
+    private val preferences: FavoritesSharedPreferences,
     private val database: AppDatabase
 ) : ViewModel() {
     var favorites = mutableStateOf<List<Character>>(emptyList())
@@ -19,37 +19,27 @@ class FavoritesViewModel(
     }
 
     fun addFavorite(id: Int) {
-        val favorites = getFavoriteIDs().toMutableSet()
-        favorites.add(id.toString())
-
-        preferences.save("favorites", favorites)
+        preferences.addFavorite(id)
     }
 
     fun removeFavorite(id: Int) {
-        val favorites = getFavoriteIDs().toMutableSet()
-        favorites.remove(id.toString())
-
-        preferences.save("favorites", favorites)
-    }
-
-    private fun getFavoriteIDs(): Set<String> {
-        return preferences.get("favorites", emptySet<String>()) as Set<String>
+        preferences.removeFavorite(id)
     }
 
     fun clearFavorites() {
-        preferences.clear()
+        preferences.clearFavorites()
         favorites.value = emptyList()
     }
 
     fun isFavorite(id: Int): Boolean {
-        return getFavoriteIDs().contains(id.toString())
+        return preferences.isFavorite(id)
     }
 
     private fun getFavorites() {
         viewModelScope.launch {
             favorites.value = database.characterDao()
                 .getMultipleCharacter(
-                    getFavoriteIDs().toList()
+                    preferences.getFavoriteIDs().toList()
                 )
         }
     }

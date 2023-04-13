@@ -1,39 +1,43 @@
-package com.core.designsystem.component
+package com.core.ui
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.core.network.entity.Character
 
 @Composable
 fun ListRow(
     left: Character,
     right: Character?,
+    isFavorite: (id: Int) -> Boolean,
     addFavorite: (id: Int) -> Unit,
     removeFavorite: (id: Int) -> Unit,
-    isFavorite: Boolean,
-    isNetworkAvailable: Boolean,
+    onCardClick: (id: Int) -> Unit
 ) {
     Row {
         CharacterCard(
-            character = left, modifier = Modifier
+            character = left,
+            modifier = Modifier
                 .weight(1f),
-            addFavorite = addFavorite,
             isFavorite = isFavorite,
+            addFavorite = addFavorite,
             removeFavorite = removeFavorite,
-            isNetworkAvailable = isNetworkAvailable
+            onCardClick = onCardClick
         )
         if (right != null) {
             Spacer(modifier = Modifier.width(16.dp))
             CharacterCard(
-                character = right, modifier = Modifier
+                character = right,
+                modifier = Modifier
                     .weight(1f),
-                addFavorite = addFavorite,
                 isFavorite = isFavorite,
+                addFavorite = addFavorite,
                 removeFavorite = removeFavorite,
-                isNetworkAvailable = isNetworkAvailable
+                onCardClick = onCardClick
             )
         } else {
             Spacer(modifier = Modifier.weight(1f))

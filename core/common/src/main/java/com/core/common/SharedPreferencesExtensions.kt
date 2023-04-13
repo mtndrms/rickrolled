@@ -19,7 +19,7 @@ class SharedPreferencesExtensions(context: Context) {
         sharedPreferences.edit().clear().apply()
     }
 
-    fun delete(key: String) {
+    fun remove(key: String) {
         sharedPreferences.edit().remove(key).apply()
     }
 }

@@ -39,6 +39,8 @@ android {
 dependencies {
     implementation project(path: ":core:network")
     implementation project(path: ":core:designsystem")
+    implementation project(path: ':core:common')
+    implementation project(path: ':core:ui')
 
     implementation libs.androidx.core.core.ktx
     implementation libs.androidx.appcompat
@@ -52,4 +54,5 @@ dependencies {
     implementation libs.koin.androidx.compose
     implementation libs.androidx.paging.compose
     implementation libs.accompanist.navigation.animation
+    implementation libs.coil.compose
 }

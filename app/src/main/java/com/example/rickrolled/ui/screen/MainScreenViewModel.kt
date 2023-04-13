@@ -10,8 +10,8 @@ import kotlinx.coroutines.launch
 
 class MainScreenViewModel(private val networkObserver: NetworkConnectivityObserver) : ViewModel() {
     private val networkFlow = networkObserver.observe()
-    private val state = MutableTransitionState(false).apply { targetState = true }
-    private val isNetworkAvailable = mutableStateOf(false)
+    val state = MutableTransitionState(false).apply { targetState = true }
+    val isNetworkAvailable = mutableStateOf(false)
 
     init {
         viewModelScope.launch {

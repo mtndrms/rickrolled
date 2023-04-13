@@ -8,16 +8,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.List
-import androidx.compose.material.icons.outlined.LocationOn
-import androidx.compose.material.icons.outlined.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.core.designsystem.icon.AppIcons
 
 @Composable
 fun BottomBar(
@@ -42,7 +39,7 @@ fun BottomBar(
             ) {
                 IconButton(onClick = toCharactersScreen, modifier = Modifier.weight(1f)) {
                     Icon(
-                        imageVector = Icons.Outlined.Person,
+                        imageVector = AppIcons.Character,
                         contentDescription = "characters tab",
                         tint = MaterialTheme.colors.onPrimary
                     )
@@ -57,7 +54,7 @@ fun BottomBar(
 
                 IconButton(onClick = toEpisodesScreen, modifier = Modifier.weight(1f)) {
                     Icon(
-                        imageVector = Icons.Outlined.List,
+                        imageVector = AppIcons.Episode,
                         contentDescription = "episodes tab",
                         tint = MaterialTheme.colors.onPrimary
                     )
@@ -72,7 +69,7 @@ fun BottomBar(
 
                 IconButton(onClick = toLocationsScreen, modifier = Modifier.weight(1f)) {
                     Icon(
-                        imageVector = Icons.Outlined.LocationOn,
+                        imageVector = AppIcons.Location,
                         contentDescription = "locations tab",
                         tint = MaterialTheme.colors.onPrimary
                     )

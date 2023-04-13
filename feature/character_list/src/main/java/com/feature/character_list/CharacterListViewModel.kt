@@ -19,9 +19,10 @@ class CharacterListViewModel(
     characterRepository: CharacterRepository,
     private val database: AppDatabase,
 ) : ViewModel() {
+    private var cache: List<Character> = emptyList()
+    private var isStartSearching = true
     var filteredList = mutableStateOf<List<Character>>(emptyList())
     val isSearching = mutableStateOf(false)
-    private var isStartSearching = true
 
     fun search(searchQuery: String) {
         isSearching.value = true
@@ -33,12 +34,13 @@ class CharacterListViewModel(
 
         viewModelScope.launch(Dispatchers.Default) {
             if (searchQuery.isEmpty()) {
+                cache = emptyList()
                 isSearching.value = false
                 isStartSearching = true
                 return@launch
             }
 
-            filteredList.value = filteredList.value.filter {
+            filteredList.value = cache.filter {
                 it.name.contains(searchQuery, ignoreCase = true)
             }
         }
@@ -46,7 +48,7 @@ class CharacterListViewModel(
 
     private fun getAllCharacters() {
         viewModelScope.launch {
-            filteredList.value = database.characterDao().getAllAsList()
+            cache = database.characterDao().getAllAsList()
         }
     }
 

@@ -27,7 +27,8 @@ import org.koin.core.parameter.parametersOf
 
 @Composable
 fun CharacterDetailsScreen(
-    id: Int?, viewModel: CharacterDetailsViewModel = getViewModel(parameters = { parametersOf(id) })
+    id: Int?,
+    viewModel: CharacterDetailsViewModel = getViewModel(parameters = { parametersOf(id) })
 ) {
     val character = viewModel.character.value
     val scrollState = rememberScrollState()

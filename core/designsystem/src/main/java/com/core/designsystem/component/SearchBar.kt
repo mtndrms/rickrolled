@@ -13,9 +13,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,6 +20,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.unit.dp
+import com.core.designsystem.icon.AppIcons
 
 @Composable
 fun SearchBar(modifier: Modifier, isScrolled: Boolean, onSearch: (String) -> Unit = {}) {
@@ -83,7 +81,7 @@ fun SearchBar(modifier: Modifier, isScrolled: Boolean, onSearch: (String) -> Uni
                     .padding(horizontal = 16.dp)
             ) {
                 Icon(
-                    imageVector = Icons.Filled.Clear,
+                    imageVector = AppIcons.Clear,
                     contentDescription = "clear",
                     tint = MaterialTheme.colors.onPrimary
                 )
@@ -96,7 +94,7 @@ fun SearchBar(modifier: Modifier, isScrolled: Boolean, onSearch: (String) -> Uni
                     .padding(horizontal = 16.dp)
             ) {
                 Icon(
-                    imageVector = Icons.Filled.Search,
+                    imageVector = AppIcons.Search,
                     contentDescription = "search",
                     tint = MaterialTheme.colors.onPrimary
                 )

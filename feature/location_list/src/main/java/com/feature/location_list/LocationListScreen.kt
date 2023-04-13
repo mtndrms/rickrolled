@@ -10,8 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun LocationScreen() {
-    println("LOC")
+fun LocationListScreen() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Text(text = "LOCATION SCREEN!", color = Color.Gray, fontSize = 20.sp)
     }

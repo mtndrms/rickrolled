@@ -11,8 +11,6 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
@@ -20,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.core.designsystem.icon.AppIcons
 
 @Composable
 fun TopBar(
@@ -58,7 +57,7 @@ fun TopBar(
                         modifier = Modifier.align(Alignment.CenterStart)
                     ) {
                         Icon(
-                            imageVector = Icons.Filled.ArrowBack,
+                            imageVector = AppIcons.ArrowBack,
                             contentDescription = "go back",
                             tint = MaterialTheme.colors.onPrimary
                         )
@@ -69,7 +68,7 @@ fun TopBar(
                         modifier = Modifier.align(Alignment.CenterStart)
                     ) {
                         Icon(
-                            imageVector = Icons.Filled.Settings,
+                            imageVector = AppIcons.Settings,
                             contentDescription = "settings",
                             tint = MaterialTheme.colors.onPrimary
                         )
@@ -82,7 +81,7 @@ fun TopBar(
                     if (currentScreen != "favorites") {
                         IconButton(onClick = toFavoriteListScreen) {
                             Icon(
-                                imageVector = Icons.Filled.Favorite,
+                                imageVector = AppIcons.FavoriteFilled,
                                 contentDescription = "favorite",
                                 tint = MaterialTheme.colors.onPrimary
                             )
@@ -92,7 +91,7 @@ fun TopBar(
                             clearAllFavorites()
                         }) {
                             Icon(
-                                imageVector = Icons.Filled.Delete,
+                                imageVector = AppIcons.Delete,
                                 contentDescription = "clear all",
                                 tint = MaterialTheme.colors.onPrimary
                             )

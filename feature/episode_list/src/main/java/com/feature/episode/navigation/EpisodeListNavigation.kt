@@ -6,9 +6,9 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.feature.episode.EpisodeListScreen
 
-const val episodeListScreenRoute = "episodes"
+const val episodeListScreenRoute = "episode_list"
 
-fun NavController.navigateToEpisodeList(navOptions: NavOptions? = null) {
+fun NavController.navigateToEpisodeListScreen(navOptions: NavOptions? = null) {
     this.navigate(episodeListScreenRoute, navOptions)
 }
 

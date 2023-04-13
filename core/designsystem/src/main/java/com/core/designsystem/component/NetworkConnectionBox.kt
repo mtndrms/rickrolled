@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,7 +21,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun NetworkConnectionBox(state: MutableTransitionState<Boolean>, isNetworkAvailable: Boolean) {
+fun NetworkConnectionBox(
+    state: MutableTransitionState<Boolean>, isNetworkAvailableState: MutableState<Boolean>
+) {
+    val isNetworkAvailable by remember { isNetworkAvailableState }
     val backgroundColor by animateColorAsState(targetValue = if (isNetworkAvailable) Color.Green else Color.Red)
 
     AnimatedVisibility(

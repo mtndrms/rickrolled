@@ -1,13 +1,10 @@
-package com.core.designsystem.component
+package com.core.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,25 +17,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
+import com.core.designsystem.icon.AppIcons
 import com.core.network.entity.Character
 
 @Composable
 fun CharacterCard(
     character: Character,
     modifier: Modifier = Modifier,
+    isFavorite: (id: Int) -> Boolean,
     addFavorite: (id: Int) -> Unit,
     removeFavorite: (id: Int) -> Unit,
-    isFavorite: Boolean,
-    isNetworkAvailable: Boolean,
+    onCardClick: (id: Int) -> Unit,
 ) {
+    var isFavoriteState by remember { mutableStateOf(isFavorite(character.id)) }
     val (noNetworkWarningSnackBarState, setNoNetworkWarningSnackBarState) = remember {
-        mutableStateOf(
-            false
-        )
+        mutableStateOf(false)
     }
 
     Card(
@@ -46,11 +41,12 @@ fun CharacterCard(
         modifier = modifier
             .aspectRatio(1f)
             .clickable {
-                if (isNetworkAvailable) {
-                    println("id: ${character.id}, next: ${character.nextPage}, prev: ${character.prevPage}")
-                } else {
-                    setNoNetworkWarningSnackBarState(true)
-                }
+//                if (isNetworkAvailable) {
+                onCardClick(character.id)
+                println("id: ${character.id}, next: ${character.nextPage}, prev: ${character.prevPage}")
+//                } else {
+//                    setNoNetworkWarningSnackBarState(true)
+//                }
             }
     ) {
         Box(
@@ -108,21 +104,20 @@ fun CharacterCard(
 
             IconButton(
                 onClick = {
-                    if (!isFavorite) addFavorite(character.id) else removeFavorite(
-                        character.id
-                    )
+                    if (isFavoriteState) removeFavorite(character.id) else addFavorite(character.id)
+                    isFavoriteState = isFavoriteState.not()
                 },
                 modifier = Modifier.align(Alignment.TopEnd)
             ) {
-                if (!isFavorite) {
+                if (isFavoriteState) {
                     Icon(
-                        imageVector = Icons.Filled.FavoriteBorder,
+                        imageVector = AppIcons.FavoriteFilled,
                         contentDescription = "favorite",
                         tint = MaterialTheme.colors.primary
                     )
                 } else {
                     Icon(
-                        imageVector = Icons.Filled.Favorite,
+                        imageVector = AppIcons.FavoriteOutlined,
                         contentDescription = "favorite",
                         tint = MaterialTheme.colors.primary
                     )

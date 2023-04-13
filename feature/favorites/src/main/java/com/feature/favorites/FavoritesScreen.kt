@@ -14,11 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.core.designsystem.component.ListRow
+import com.core.ui.ListRow
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun FavoritesScreen(onCardClick: () -> Unit, viewModel: FavoritesViewModel = getViewModel()) {
+fun FavoritesScreen(onCardClick: (id: Int) -> Unit) {
+    val viewModel: FavoritesViewModel = getViewModel()
     val favorites by remember { viewModel.favorites }
 
     Column(
@@ -32,10 +33,10 @@ fun FavoritesScreen(onCardClick: () -> Unit, viewModel: FavoritesViewModel = get
                     ListRow(
                         favorites[index * 2],
                         if (favorites.size >= index * 2 + 2) favorites[(index * 2) + 1] else null,
-                        isFavorite = true,
                         removeFavorite = viewModel::removeFavorite,
                         addFavorite = viewModel::addFavorite,
-                        isNetworkAvailable = true
+                        isFavorite = viewModel::isFavorite,
+                        onCardClick = onCardClick
                     )
                 }
             }

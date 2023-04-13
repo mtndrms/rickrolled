@@ -14,6 +14,6 @@ fun NavController.navigateToFavoritesScreen(navOptions: NavOptions? = null) {
 
 fun NavGraphBuilder.favoritesScreen() {
     composable(route = settingsScreenRoute) {
-        FavoritesScreen(onCardClick = { println("cardClicked") })
+        FavoritesScreen(onCardClick = {})
     }
 }
