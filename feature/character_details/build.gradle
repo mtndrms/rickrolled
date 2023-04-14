@@ -52,4 +52,7 @@ dependencies {
     implementation libs.koin.androidx.compose
     implementation libs.coil.compose
     implementation libs.accompanist.navigation.animation
+
+    debugImplementation libs.chucker
+    releaseImplementation libs.chucker.no.op
 }

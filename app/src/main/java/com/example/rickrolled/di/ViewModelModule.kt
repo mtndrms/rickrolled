@@ -11,9 +11,15 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel { CharacterListViewModel(get(), get()) }
-    viewModel { parameters -> CharacterDetailsViewModel(get(), id = parameters.get()) }
+    viewModel { parameters ->
+        CharacterDetailsViewModel(
+            chuckerCollector = get(),
+            repository = get(),
+            id = parameters.get()
+        )
+    }
     viewModel { FavoritesViewModel(get(), get()) }
     viewModel { EpisodeListViewModel(get(), get()) }
     viewModel { SettingsScreenViewModel(get()) }
-    viewModel { MainScreenViewModel(get()) }
+    viewModel { MainScreenViewModel(get(), get()) }
 }

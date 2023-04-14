@@ -35,6 +35,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import okio.IOException
 import org.koin.androidx.compose.getViewModel
 
 @OptIn(ExperimentalAnimationApi::class)
@@ -61,18 +62,22 @@ fun MainScreen() {
             bottomBarState.value = false
             topBarState.value = false
         }
+
         "character_detail/{id}" -> {
             bottomBarState.value = false
             topBarState.value = true
         }
+
         "favorites" -> {
             bottomBarState.value = false
             topBarState.value = true
         }
+
         "settings" -> {
             bottomBarState.value = false
             topBarState.value = true
         }
+
         else -> {
             bottomBarState.value = true
             topBarState.value = true
@@ -109,8 +114,13 @@ fun MainScreen() {
                     navController.navigateToEpisodeListScreen(topLevelNavOptions)
                 },
                 toLocationsScreen = {
-                    navController.popBackStack()
-                    navController.navigateToLocationListScreen(topLevelNavOptions)
+//                    navController.popBackStack()
+//                    navController.navigateToLocationListScreen(topLevelNavOptions)
+                    try {
+                        throw IOException("Test exception")
+                    } catch (e: IOException) {
+                        mainScreenViewModel.chuckerCollector.onError("MAIN_SCREEN", e)
+                    }
                 }
             )
         },

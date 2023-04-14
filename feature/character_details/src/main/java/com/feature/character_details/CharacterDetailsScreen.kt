@@ -26,10 +26,8 @@ import org.koin.androidx.compose.getViewModel
 import org.koin.core.parameter.parametersOf
 
 @Composable
-fun CharacterDetailsScreen(
-    id: Int?,
-    viewModel: CharacterDetailsViewModel = getViewModel(parameters = { parametersOf(id) })
-) {
+fun CharacterDetailsScreen(id: Int?) {
+    val viewModel: CharacterDetailsViewModel = getViewModel(parameters = { parametersOf(id) })
     val character = viewModel.character.value
     val scrollState = rememberScrollState()
 
