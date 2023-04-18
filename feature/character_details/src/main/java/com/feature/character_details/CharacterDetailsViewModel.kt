@@ -23,7 +23,7 @@ class CharacterDetailsViewModel(
         viewModelScope.launch {
             character.value = try {
                 id?.let {
-                    repository.getCharacter(-1)
+                    repository.getCharacter(id)
                 }
             } catch (e: Exception) {
                 chuckerCollector.onError("CHARACTER_DETAILS", e)

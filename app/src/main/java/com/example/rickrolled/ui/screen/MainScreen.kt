@@ -114,13 +114,8 @@ fun MainScreen() {
                     navController.navigateToEpisodeListScreen(topLevelNavOptions)
                 },
                 toLocationsScreen = {
-//                    navController.popBackStack()
-//                    navController.navigateToLocationListScreen(topLevelNavOptions)
-                    try {
-                        throw IOException("Test exception")
-                    } catch (e: IOException) {
-                        mainScreenViewModel.chuckerCollector.onError("MAIN_SCREEN", e)
-                    }
+                    navController.popBackStack()
+                    navController.navigateToLocationListScreen(topLevelNavOptions)
                 }
             )
         },
